@@ -2,8 +2,6 @@ import { Reveal } from "@/components/Reveal";
 import { HeroChatInput } from "@/components/sections/HeroChatInput";
 import { HeroChatMock } from "@/components/sections/HeroChatMock";
 
-const navLinks = ["Products", "Use cases", "Docs", "Pricing"];
-
 export function Hero() {
   return (
     <section
@@ -12,50 +10,8 @@ export function Hero() {
           "radial-gradient(ellipse 1100px 600px at 50% 280px, rgba(134, 129, 247, 0.22), transparent 65%), radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 22px 22px, #000",
       }}
     >
-      <div className="mx-auto max-w-[960px] px-6 pt-8 pb-[100px]">
-        <Reveal immediate offset={12} className="w-full">
-          <nav
-            className="flex items-center justify-between rounded-[14px] py-2.5 pl-5 pr-[14px]"
-            style={{ background: "#19191a" }}
-          >
-            <a href="/" className="flex items-center gap-2">
-              <img
-                src="/logos/Crustdata.svg"
-                alt=""
-                width={36}
-                height={32}
-                style={{ width: "36px", height: "auto" }}
-              />
-              <span
-                className="font-normal text-[24px] leading-[23.25px]"
-                style={{ color: "#fafafa" }}
-              >
-                Crustdata
-              </span>
-            </a>
-            <ul className="hidden md:flex items-center gap-7 list-none">
-              {navLinks.map((label) => (
-                <li key={label}>
-                  <a
-                    href="#"
-                    className="font-medium text-[14px] leading-[21.7px] text-white"
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="/demo"
-              className="rounded-[8px] px-3 py-2 font-medium text-[14px] leading-[21px] text-white"
-              style={{ background: "#5752ca" }}
-            >
-              Book a Demo
-            </a>
-          </nav>
-        </Reveal>
-
-        <div className="mt-[90px] flex flex-col items-center gap-[64px] max-w-[960px] mx-auto relative">
+      <div className="mx-auto max-w-[960px] px-6 pt-[120px] pb-[100px]">
+        <div className="flex flex-col items-center gap-[64px] max-w-[960px] mx-auto relative">
           <Reveal immediate delay={120} className="w-full">
             <div
               className="flex flex-col items-center w-full"
@@ -76,7 +32,7 @@ export function Hero() {
                   MCP SERVER
                 </div>
                 <h1
-                  className="font-semibold text-[40px] sm:text-[56px] m-0"
+                  className="font-semibold text-[34px] sm:text-[56px] m-0"
                   style={{
                     color: "#fafafa",
                     letterSpacing: "-0.72px",

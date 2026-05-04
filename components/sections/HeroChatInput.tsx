@@ -12,12 +12,12 @@ export function HeroChatInput() {
 
   return (
     <div
-      className="hidden md:flex absolute items-center"
+      className="flex absolute items-center w-[calc(100%-32px)] sm:w-[480px]"
       style={{
         left: "50%",
         bottom: "-32px",
-        width: "480px",
         height: "64px",
+        maxWidth: "480px",
         borderRadius: "16px",
         border: "1px solid transparent",
         background:

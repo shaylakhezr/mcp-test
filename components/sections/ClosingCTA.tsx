@@ -9,7 +9,7 @@ export function ClosingCTA() {
           READY TO SHIP
         </div>
         <h2
-          className="font-semibold text-[32px] sm:text-[40px] text-center m-0 max-w-[720px] pt-[6px]"
+          className="font-semibold text-[26px] sm:text-[40px] text-center m-0 max-w-[720px] pt-[6px]"
           style={{
             color: "#fafafa",
             letterSpacing: "-0.6px",
@@ -19,10 +19,10 @@ export function ClosingCTA() {
           Give Claude the keys to{" "}
           <span style={{ color: "#df7e5d" }}>800M profiles</span>.
         </h2>
-        <div className="flex flex-wrap justify-center gap-3 mt-6">
+        <div className="flex items-center justify-center gap-3 mt-6 flex-nowrap">
           <a
             href="https://app.crustdata.com/signup"
-            className="rounded-[8px] px-6 py-3 font-semibold text-[16px] leading-[21.7px] text-white"
+            className="rounded-[8px] px-4 sm:px-6 py-2.5 sm:py-3 font-semibold text-[14px] sm:text-[16px] leading-[21.7px] text-white whitespace-nowrap"
             style={{ background: "#5752ca" }}
           >
             Get API key →
@@ -37,7 +37,7 @@ export function ClosingCTA() {
             }}
           >
             <span
-              className="block rounded-[7px] px-[23px] py-[11px] font-medium text-[14px] leading-[21.7px]"
+              className="block rounded-[7px] px-4 sm:px-[23px] py-2.5 sm:py-[11px] font-medium text-[13px] sm:text-[14px] leading-[21.7px] whitespace-nowrap"
               style={{
                 background: "linear-gradient(180deg, #101010 0%, #000 100%)",
                 color: "#fafafa",

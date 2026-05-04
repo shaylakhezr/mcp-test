@@ -9,10 +9,12 @@ import { FAQ } from "@/components/sections/FAQ";
 import { ClosingCTA } from "@/components/sections/ClosingCTA";
 import { Footer } from "@/components/sections/Footer";
 import { Reveal } from "@/components/Reveal";
+import { TopNav } from "@/components/sections/TopNav";
 
 export default function Home() {
   return (
     <>
+      <TopNav />
       <main className="flex-1">
         <Hero />
         <Reveal>

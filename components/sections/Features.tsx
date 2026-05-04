@@ -67,7 +67,7 @@ const ROTATE_MS = 5000;
 
 function FeatureText({ block }: { block: Block }) {
   return (
-    <div className="flex flex-col gap-3 w-full md:w-[400px] shrink-0">
+    <div className="flex flex-col gap-3 w-full md:w-[400px] shrink-0 items-center md:items-start text-center md:text-left">
       <h3
         className="font-semibold text-[20px] m-0 whitespace-pre-line"
         style={{
@@ -198,7 +198,7 @@ export function Features() {
             WHAT CLAUDE CAN DO
           </div>
           <h2
-            className="font-semibold text-[32px] sm:text-[40px] text-center m-0 pt-[6px] max-w-[680px]"
+            className="font-semibold text-[26px] sm:text-[40px] text-center m-0 pt-[6px] max-w-[680px]"
             style={{
               color: "#fafafa",
               letterSpacing: "-0.6px",
@@ -244,7 +244,7 @@ export function Features() {
           onMouseLeave={() => setPaused(false)}
         >
           <div className="w-full">
-            <div className="w-full max-w-[960px] flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-0">
+            <div className="w-full max-w-[960px] flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0">
               <div
                 key={`text-${active}`}
                 className="w-full md:w-[400px] shrink-0 animate-in fade-in slide-in-from-bottom-2 duration-500"

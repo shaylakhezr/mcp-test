@@ -130,7 +130,7 @@ export function Surfaces() {
             ONE DATA LAYER, FOUR SURFACES
           </div>
           <h2
-            className="font-semibold text-[32px] sm:text-[40px] text-center m-0 pt-[6px]"
+            className="font-semibold text-[26px] sm:text-[40px] text-center m-0 pt-[6px]"
             style={{
               color: "#fafafa",
               letterSpacing: "-0.6px",

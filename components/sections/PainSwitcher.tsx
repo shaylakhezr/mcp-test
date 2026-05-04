@@ -34,7 +34,7 @@ export function PainSwitcher() {
             BEFORE MCP
           </div>
           <h2
-            className="font-semibold text-[32px] sm:text-[40px] text-center m-0 pt-[6px] max-w-[680px]"
+            className="font-semibold text-[26px] sm:text-[40px] text-center m-0 pt-[6px] max-w-[680px]"
             style={{
               color: "#fafafa",
               letterSpacing: "-0.6px",

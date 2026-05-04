@@ -175,12 +175,16 @@ export function HeroChatMock() {
           className="flex flex-col"
           style={{ gap: "20px", paddingTop: "12px", paddingBottom: "24px" }}
         >
-          <div className="flex justify-end w-full">
+          <div
+            className="flex justify-end w-full"
+            style={{ maxWidth: "100%" }}
+          >
             <div
               style={{
                 borderRadius: "16px 16px 6px 16px",
                 border: "1px solid #5F5F60",
                 padding: "10px 16px",
+                maxWidth: "100%",
                 opacity: bubbleIn ? 1 : 0,
                 transform: bubbleIn ? "scale(1)" : "scale(0.3)",
                 transformOrigin: "bottom right",
@@ -190,11 +194,12 @@ export function HeroChatMock() {
               }}
             >
               <p
-                className="font-normal text-[14px] m-0 whitespace-nowrap"
+                className="font-normal text-[13px] sm:text-[14px] m-0"
                 style={{
                   color: "#eeeef5",
                   lineHeight: "21px",
                   minHeight: "21px",
+                  maxWidth: "100%",
                 }}
               >
                 {displayedPrompt}

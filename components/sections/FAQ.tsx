@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
 const faqs: { q: string; a: ReactNode }[] = [
@@ -90,7 +89,7 @@ export function FAQ() {
             FAQ
           </div>
           <h2
-            className="font-semibold text-[32px] sm:text-[40px] text-center m-0 pt-[6px]"
+            className="font-semibold text-[26px] sm:text-[40px] text-center m-0 pt-[6px]"
             style={{
               color: "#fafafa",
               letterSpacing: "-0.6px",
@@ -209,42 +208,34 @@ export function FAQ() {
                   }}
                 >
                   <span
-                    className="flex items-center justify-between gap-2 rounded-[7px] px-[16px] py-[12px] w-full h-full"
+                    className="flex items-center justify-center gap-2 rounded-[7px] px-3 sm:px-[16px] py-[12px] w-full h-full"
                     style={{
                       background:
                         "linear-gradient(180deg, #101010 0%, #000 100%)",
                     }}
                   >
-                    <span className="flex items-center gap-2.5">
-                      <img
-                        src={llm.logo}
-                        alt=""
-                        width={24}
-                        height={24}
-                        style={{
-                          width: "24px",
-                          height: "24px",
-                          flexShrink: 0,
-                          objectFit: "contain",
-                          filter: llm.invert ? "invert(1)" : undefined,
-                        }}
-                      />
-                      <span
-                        className="font-sans font-medium text-[13px] uppercase whitespace-nowrap"
-                        style={{
-                          color: "#fafafa",
-                          letterSpacing: "1.2px",
-                          lineHeight: 1,
-                        }}
-                      >
-                        {llm.name}
-                      </span>
-                    </span>
-                    <ArrowUpRight
-                      size={14}
-                      style={{ color: "#71717a", flexShrink: 0 }}
-                      strokeWidth={1.75}
+                    <img
+                      src={llm.logo}
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="w-5 h-5 sm:w-6 sm:h-6"
+                      style={{
+                        flexShrink: 0,
+                        objectFit: "contain",
+                        filter: llm.invert ? "invert(1)" : undefined,
+                      }}
                     />
+                    <span
+                      className="font-sans font-medium text-[11px] sm:text-[13px] uppercase truncate"
+                      style={{
+                        color: "#fafafa",
+                        letterSpacing: "1px",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {llm.name}
+                    </span>
                   </span>
                 </a>
               ))}
