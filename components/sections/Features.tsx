@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 type Tool = { name: string; meta: string };
 
 type Block = {
@@ -5,7 +9,6 @@ type Block = {
   body: string;
   header: string;
   tools: Tool[];
-  reversed?: boolean;
   gradientBorder?: boolean;
 };
 
@@ -44,7 +47,6 @@ const blocks: Block[] = [
       { name: "crustdata_batch_job_search", meta: "10 companies" },
       { name: "crustdata_batch_job_search_live", meta: "3 credits / 100" },
     ],
-    reversed: true,
     gradientBorder: true,
   },
   {
@@ -57,16 +59,17 @@ const blocks: Block[] = [
       { name: "crustdata_watcher_simulate", meta: "test, free" },
       { name: "crustdata_watcher_update", meta: "pause, resume" },
     ],
-    reversed: true,
     gradientBorder: true,
   },
 ];
 
+const ROTATE_MS = 5000;
+
 function FeatureText({ block }: { block: Block }) {
   return (
-    <div className="flex flex-col gap-4 w-full md:w-[346px] shrink-0">
+    <div className="flex flex-col gap-3 w-full md:w-[400px] shrink-0">
       <h3
-        className="font-semibold text-[24px] m-0 whitespace-pre-line"
+        className="font-semibold text-[20px] m-0 whitespace-pre-line"
         style={{
           color: "#fafafa",
           letterSpacing: "-0.2px",
@@ -76,8 +79,8 @@ function FeatureText({ block }: { block: Block }) {
         {block.title}
       </h3>
       <p
-        className="font-normal text-[20px] m-0"
-        style={{ color: "#a1a1aa", lineHeight: "22.48px" }}
+        className="font-normal text-[16px] m-0"
+        style={{ color: "#a1a1aa", lineHeight: "24px" }}
       >
         {block.body}
       </p>
@@ -85,10 +88,24 @@ function FeatureText({ block }: { block: Block }) {
   );
 }
 
+function Divider() {
+  return (
+    <div
+      aria-hidden
+      style={{
+        height: "1px",
+        width: "100%",
+        background:
+          "linear-gradient(90deg, #000 0%, #8681F7 15%, #8681F7 85%, #000 100%)",
+      }}
+    />
+  );
+}
+
 function FeatureCard({ block }: { block: Block }) {
   return (
     <div
-      className="flex flex-col items-center rounded-[16px] shrink-0 w-full md:w-[370px]"
+      className="flex flex-col items-center rounded-[16px] shrink-0 w-full md:w-[380px]"
       style={{
         height: "222px",
         padding: "28px 8px",
@@ -99,20 +116,13 @@ function FeatureCard({ block }: { block: Block }) {
         className="rounded-[12px] w-full"
         style={{
           padding: "19px 21px",
-          ...(block.gradientBorder
-            ? {
-                border: "1px solid transparent",
-                background: `linear-gradient(#000, #000) padding-box, linear-gradient(${
-                  block.reversed ? "225deg" : "135deg"
-                }, rgba(123, 111, 224, 0.9) 0%, rgba(123, 111, 224, 0.7) 35%, rgba(255, 255, 255, 0.08) 75%, rgba(255, 255, 255, 0.06) 100%) border-box`,
-              }
-            : {
-                border: "1px solid #8681f7",
-              }),
+          border: "1px solid transparent",
+          background:
+            "linear-gradient(#000, #000) padding-box, linear-gradient(135deg, rgba(123, 111, 224, 0.9) 0%, rgba(123, 111, 224, 0.7) 35%, rgba(255, 255, 255, 0.08) 75%, rgba(255, 255, 255, 0.06) 100%) border-box",
         }}
       >
         <div
-          className="font-mono text-[10.5px] uppercase w-full"
+          className="font-mono text-[10.5px] uppercase w-full flex items-center justify-between"
           style={{
             color: "#52525b",
             letterSpacing: "1.26px",
@@ -121,7 +131,8 @@ function FeatureCard({ block }: { block: Block }) {
             borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
           }}
         >
-          {block.header}
+          <span>TOOLS</span>
+          <span>{block.header.replace(/^TOOLS\s*·\s*/, "")}</span>
         </div>
         <div className="w-full" style={{ marginTop: "10px" }}>
           {block.tools.map((tool, i) => (
@@ -158,39 +169,23 @@ function FeatureCard({ block }: { block: Block }) {
   );
 }
 
-function Feature({ block }: { block: Block }) {
-  return (
-    <div className="w-full max-w-[960px] flex flex-col">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-0">
-        {block.reversed ? (
-          <>
-            <FeatureCard block={block} />
-            <FeatureText block={block} />
-          </>
-        ) : (
-          <>
-            <FeatureText block={block} />
-            <FeatureCard block={block} />
-          </>
-        )}
-      </div>
-      <div
-        aria-hidden
-        style={{
-          height: "1px",
-          width: "100%",
-          background:
-            "linear-gradient(90deg, #000 5%, #8681F7 51%, #000 100%)",
-        }}
-      />
-    </div>
-  );
-}
-
 export function Features() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setActive((prev) => (prev + 1) % blocks.length);
+    }, ROTATE_MS);
+    return () => window.clearInterval(id);
+  }, [paused, active]);
+
+  const block = blocks[active];
+
   return (
     <section style={{ background: "#000" }}>
-      <div className="mx-auto max-w-[960px] px-6 py-[120px] flex flex-col items-center">
+      <div className="mx-auto max-w-[960px] px-6 py-[64px] md:py-[80px] flex flex-col items-center">
         <header className="flex flex-col items-center gap-[14px] w-full pt-[6px]">
           <div
             className="font-semibold text-[14px] uppercase text-center"
@@ -219,22 +214,99 @@ export function Features() {
             Every surface of the Crustdata platform, exposed as an MCP tool
             Claude can reach for.
           </p>
+          <a
+            href="https://docs.crustdata.com"
+            className="rounded-[8px] inline-block"
+            style={{
+              marginTop: "16px",
+              padding: "1px",
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%)",
+            }}
+          >
+            <span
+              className="block rounded-[7px] px-[20px] py-[10px] font-medium text-[14px] leading-[21.7px]"
+              style={{
+                background:
+                  "linear-gradient(180deg, #101010 0%, #000 100%)",
+                color: "#fafafa",
+              }}
+            >
+              Read the docs →
+            </span>
+          </a>
         </header>
 
         <div
           className="flex flex-col items-center w-full"
-          style={{ marginTop: "80px", gap: "120px" }}
+          style={{ marginTop: "80px", gap: "40px" }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          <Feature block={blocks[0]} />
-          <Feature block={blocks[1]} />
-        </div>
+          <div className="w-full">
+            <div className="w-full max-w-[960px] flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-0">
+              <div
+                key={`text-${active}`}
+                className="w-full md:w-[400px] shrink-0 animate-in fade-in slide-in-from-bottom-2 duration-500"
+              >
+                <FeatureText block={block} />
+              </div>
+              <div
+                key={`card-${active}`}
+                className="shrink-0 animate-in fade-in slide-in-from-bottom-2 duration-500"
+              >
+                <FeatureCard block={block} />
+              </div>
+            </div>
+            <div
+              aria-hidden
+              style={{
+                height: "1px",
+                width: "100%",
+                background:
+                  "linear-gradient(90deg, #000 0%, #8681F7 15%, #8681F7 85%, #000 100%)",
+              }}
+            />
+          </div>
 
-        <div
-          className="flex flex-col items-center w-full"
-          style={{ marginTop: "240px", gap: "120px" }}
-        >
-          <Feature block={blocks[2]} />
-          <Feature block={blocks[3]} />
+          <div className="flex gap-5 items-center">
+            <button
+              type="button"
+              onClick={() =>
+                setActive((prev) => (prev - 1 + blocks.length) % blocks.length)
+              }
+              aria-label="Previous capability"
+              className="font-medium text-[16px] cursor-pointer transition-colors duration-200 hover:text-[#fafafa]"
+              style={{
+                background: "transparent",
+                color: "#a1a1aa",
+                lineHeight: 1,
+              }}
+            >
+              ←
+            </button>
+            <span
+              className="font-mono text-[12px] tabular-nums"
+              style={{ color: "#71717a", letterSpacing: "0.5px" }}
+            >
+              {String(active + 1).padStart(2, "0")} /{" "}
+              {String(blocks.length).padStart(2, "0")}
+            </span>
+            <button
+              type="button"
+              onClick={() => setActive((prev) => (prev + 1) % blocks.length)}
+              aria-label="Next capability"
+              className="font-medium text-[16px] cursor-pointer transition-colors duration-200 hover:text-[#fafafa]"
+              style={{
+                background: "transparent",
+                color: "#a1a1aa",
+                lineHeight: 1,
+              }}
+            >
+              →
+            </button>
+          </div>
+
         </div>
       </div>
     </section>

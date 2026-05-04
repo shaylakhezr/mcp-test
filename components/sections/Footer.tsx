@@ -39,12 +39,7 @@ const cols = [
 
 export function Footer() {
   return (
-    <footer
-      style={{
-        background: "#000",
-        borderTop: "1px solid rgba(255, 255, 255, 0.07)",
-      }}
-    >
+    <footer style={{ background: "#000" }}>
       <div className="mx-auto max-w-[960px] px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-10">
           <div className="col-span-2 md:col-span-1">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Gelasio } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -37,6 +38,7 @@ export default function RootLayout({
       className={cn("dark", "h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable, gelasio.variable)}
     >
       <body className="min-h-full flex flex-col">
+        <SmoothScroll />
         {children}
         <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
       </body>

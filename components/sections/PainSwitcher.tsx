@@ -20,7 +20,7 @@ const blocks = [
 
 export function PainSwitcher() {
   return (
-    <div className="flex flex-col items-center gap-[240px]">
+    <div className="flex flex-col items-center gap-[120px] md:gap-[240px]">
       <div className="flex flex-col items-center gap-[80px] w-full">
         <header className="flex flex-col items-center gap-[16px] pt-[6px]">
           <div
@@ -77,16 +77,16 @@ function Block({
 }) {
   return (
     <div className="w-full max-w-[960px] flex flex-col md:flex-row md:items-center md:justify-between gap-12 md:gap-0">
-      <div className="flex flex-col gap-3 w-full md:w-[276px] shrink-0">
+      <div className="flex flex-col gap-3 w-full md:w-[400px] shrink-0">
         <div
-          className="font-semibold text-[24px] whitespace-pre-line"
-          style={{ color: "#eeeef5", lineHeight: "28px" }}
+          className="font-semibold text-[20px] whitespace-pre-line"
+          style={{ color: "#eeeef5", lineHeight: "26px" }}
         >
           {text.title}
         </div>
         <p
-          className="font-normal text-[20px] m-0"
-          style={{ color: "#a1a1aa", lineHeight: "26px" }}
+          className="font-normal text-[16px] m-0"
+          style={{ color: "#a1a1aa", lineHeight: "24px" }}
         >
           {text.body}
         </p>
@@ -140,6 +140,7 @@ function SubscriptionMock() {
   };
 
   return (
+    <div className="w-full max-w-full overflow-x-auto">
     <div
       ref={ref}
       className="flex flex-col items-start"
@@ -147,10 +148,11 @@ function SubscriptionMock() {
         borderBottom: cellBorder,
         opacity: visible ? 1 : 0,
         transition: "opacity 600ms ease-out",
+        minWidth: "min-content",
       }}
     >
       <div className="flex items-start">
-        <div style={{ ...headerCell, width: "156px", borderRight: cellBorder }}>
+        <div style={{ ...headerCell, width: "160px", borderRight: cellBorder }}>
           <span
             className="font-semibold text-[12px] uppercase whitespace-nowrap"
             style={{
@@ -165,7 +167,7 @@ function SubscriptionMock() {
         <div
           style={{
             ...headerCell,
-            width: "121px",
+            width: "110px",
             borderRight: cellBorder,
             justifyContent: "center",
           }}
@@ -180,7 +182,7 @@ function SubscriptionMock() {
         <div
           style={{
             ...headerCell,
-            width: "121px",
+            width: "110px",
             justifyContent: "center",
           }}
         >
@@ -188,7 +190,7 @@ function SubscriptionMock() {
             className="font-medium text-[12px] whitespace-nowrap"
             style={{ color: "#a1a1aa", lineHeight: "16.5px" }}
           >
-            ZoomInfo
+            Other tools
           </span>
         </div>
       </div>
@@ -196,7 +198,7 @@ function SubscriptionMock() {
       {rows.map((row) => (
         <Fragment key={row.name}>
           <div className="flex items-start">
-            <div style={{ ...bodyCell, width: "156px", borderRight: cellBorder }}>
+            <div style={{ ...bodyCell, width: "160px", borderRight: cellBorder }}>
               <p className="m-0 whitespace-nowrap">
                 <span
                   className="font-medium text-[13px]"
@@ -215,7 +217,7 @@ function SubscriptionMock() {
             <div
               style={{
                 ...bodyCell,
-                width: "121px",
+                width: "110px",
                 borderRight: cellBorder,
                 justifyContent: "center",
               }}
@@ -231,7 +233,7 @@ function SubscriptionMock() {
             <div
               style={{
                 ...bodyCell,
-                width: "121px",
+                width: "110px",
                 justifyContent: "center",
               }}
             >
@@ -245,6 +247,7 @@ function SubscriptionMock() {
           </div>
         </Fragment>
       ))}
+    </div>
     </div>
   );
 }
@@ -298,14 +301,13 @@ function FiltersMock() {
   return (
     <div
       ref={ref}
-      className="flex flex-col gap-[50px] items-start"
-      style={{ width: "377px" }}
+      className="flex flex-col gap-[50px] items-start w-full md:w-[380px]"
     >
       <div className="flex justify-end w-full">
         <div
-          className="rounded-[12px]"
           style={{
-            border: "1px solid #5f5f60",
+            borderRadius: "16px 16px 6px 16px",
+            border: "1px solid #5F5F60",
             padding: "11px 12px",
             opacity: bubbleIn ? 1 : 0,
             transform: bubbleIn ? "scale(1)" : "scale(0.4)",
@@ -317,7 +319,7 @@ function FiltersMock() {
         >
           <p
             className="font-normal text-[14px] m-0"
-            style={{ color: "#eeeef5", lineHeight: "21px", width: "322px" }}
+            style={{ color: "#eeeef5", lineHeight: "21px", maxWidth: "322px" }}
           >
             {PROMPT_TEXT}
           </p>
@@ -336,7 +338,23 @@ function FiltersMock() {
             />
             <p
               className="font-mono text-[13px] m-0"
-              style={{ color: "#8a8a8a", lineHeight: "22.5px" }}
+              style={{
+                lineHeight: "22.5px",
+                ...(showResult
+                  ? { color: "#8a8a8a" }
+                  : {
+                      backgroundImage:
+                        "linear-gradient(90deg, #5a5a5a 0%, #5a5a5a 35%, #f4f4f5 50%, #5a5a5a 65%, #5a5a5a 100%)",
+                      backgroundSize: "200% 100%",
+                      backgroundRepeat: "no-repeat",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      color: "transparent",
+                      animation: "text-shimmer 2.2s linear infinite",
+                      willChange: "background-position",
+                    }),
+              }}
             >
               crustdata_company_search &gt;
             </p>
@@ -361,8 +379,8 @@ function SlackMock() {
 
   return (
     <div
-      className="flex items-center justify-between"
-      style={{ width: "381px", height: "80px" }}
+      className="flex items-center justify-between w-full md:w-[380px]"
+      style={{ height: "80px" }}
     >
       <div
         className="rounded-[16px] flex items-center justify-center shrink-0"

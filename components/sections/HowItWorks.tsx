@@ -28,7 +28,7 @@ const verticalDividerBg =
 export function HowItWorks() {
   return (
     <section style={{ background: "#000" }}>
-      <div className="mx-auto max-w-[960px] px-6 py-[120px]">
+      <div className="mx-auto max-w-[960px] px-6 py-[64px] md:py-[80px]">
         <header className="flex flex-col items-center gap-[14px] w-full pt-[6px] mb-[80px]">
           <div
             className="font-semibold text-[14px] leading-[17px] uppercase text-center"
@@ -68,7 +68,7 @@ export function HowItWorks() {
                 left: "calc(100% / 6)",
                 right: "calc(100% / 6)",
                 background:
-                  "linear-gradient(90deg, #000 5%, #8681F7 51%, #000 100%)",
+                  "linear-gradient(90deg, #000 0%, #8681F7 15%, #8681F7 85%, #000 100%)",
               }}
             />
             <div className="grid grid-cols-3 h-full">
@@ -145,17 +145,17 @@ export function HowItWorks() {
                   {step.kicker}
                 </div>
                 <h3
-                  className="font-semibold text-[24px] m-0"
+                  className="font-semibold text-[20px] m-0"
                   style={{
                     color: "#eeeef5",
-                    lineHeight: "28px",
+                    lineHeight: "26px",
                   }}
                 >
                   {step.title}
                 </h3>
                 <p
-                  className="font-normal text-[20px] m-0"
-                  style={{ color: "#a1a1aa", lineHeight: "26px" }}
+                  className="font-normal text-[16px] m-0"
+                  style={{ color: "#a1a1aa", lineHeight: "24px" }}
                 >
                   {step.body}
                 </p>

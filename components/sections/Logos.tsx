@@ -30,16 +30,16 @@ const fadeMask =
 function MarqueeRow({
   logos,
   direction,
-  duration,
 }: {
   logos: Logo[];
   direction: "left" | "right";
-  duration: number;
 }) {
+  const duration = direction === "left" ? 45 : 50;
   return (
     <div
-      className="w-full overflow-hidden"
       style={{
+        width: "100%",
+        overflow: "hidden",
         maskImage: fadeMask,
         WebkitMaskImage: fadeMask,
       }}
@@ -48,9 +48,12 @@ function MarqueeRow({
         style={{
           display: "flex",
           width: "max-content",
-          animation: `${
-            direction === "left" ? "marquee-left" : "marquee-right"
-          } ${duration}s linear infinite`,
+          willChange: "transform",
+          animationName:
+            direction === "left" ? "marquee-left" : "marquee-right",
+          animationDuration: `${duration}s`,
+          animationTimingFunction: "linear",
+          animationIterationCount: "infinite",
         }}
       >
         {[0, 1].map((copy) => (
@@ -72,8 +75,12 @@ function MarqueeRow({
                 alt={copy === 0 ? l.alt : ""}
                 width={l.w}
                 height={l.w === 144 ? 72 : 64}
-                className="h-16 w-auto opacity-80"
-                style={{ flexShrink: 0 }}
+                className="opacity-80"
+                style={{
+                  flexShrink: 0,
+                  height: "64px",
+                  width: "auto",
+                }}
               />
             ))}
           </div>
@@ -85,14 +92,8 @@ function MarqueeRow({
 
 export function Logos() {
   return (
-    <section
-      style={{
-        background: "#000",
-        borderTop: "1px solid rgba(255, 255, 255, 0.07)",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.07)",
-      }}
-    >
-      <div className="mx-auto max-w-[960px] px-6 py-[120px] flex flex-col items-center gap-8">
+    <section style={{ background: "#000" }}>
+      <div className="mx-auto max-w-[960px] px-6 py-[64px] md:py-[80px] flex flex-col items-center gap-8">
         <p
           className="font-normal text-[14px] leading-[21px]"
           style={{ color: "#aaa" }}
@@ -100,8 +101,8 @@ export function Logos() {
           Trusted by revenue and AI teams at
         </p>
         <div className="w-full flex flex-col gap-8">
-          <MarqueeRow logos={row1} direction="left" duration={45} />
-          <MarqueeRow logos={row2} direction="right" duration={50} />
+          <MarqueeRow logos={row1} direction="left" />
+          <MarqueeRow logos={row2} direction="right" />
         </div>
       </div>
     </section>

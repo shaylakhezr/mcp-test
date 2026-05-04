@@ -1,7 +1,7 @@
 export function ClosingCTA() {
   return (
     <section style={{ background: "#000" }}>
-      <div className="mx-auto max-w-[960px] px-6 py-[120px] text-center flex flex-col items-center gap-[14px]">
+      <div className="mx-auto max-w-[960px] px-6 py-[64px] md:py-[80px] text-center flex flex-col items-center gap-[14px]">
         <div
           className="font-semibold text-[14px] leading-[17px] uppercase"
           style={{ color: "#8681f7", letterSpacing: "1.54px" }}

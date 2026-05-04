@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
 const faqs: { q: string; a: ReactNode }[] = [
@@ -36,17 +37,6 @@ const faqs: { q: string; a: ReactNode }[] = [
     ),
   },
   {
-    q: "Is enrichment on MCP live or cached?",
-    a: (
-      <p>
-        MCP enrichment is in-database and cached for speed. For live, real-time
-        enrichment (the kind that runs a brand-new lookup against the source),
-        use the Crustdata REST API directly with the{" "}
-        <code style={{ color: "#8681f7" }}>enrich_realtime=true</code> flag.
-      </p>
-    ),
-  },
-  {
     q: "Does MCP have access to the full tool surface?",
     a: (
       <p>
@@ -57,27 +47,32 @@ const faqs: { q: string; a: ReactNode }[] = [
       </p>
     ),
   },
+];
+
+const llms = [
   {
-    q: "How do I test without burning credits?",
-    a: (
-      <p>
-        Identify, autocomplete, and watcher simulation are free. Start with{" "}
-        <code style={{ color: "#8681f7" }}>crustdata_company_identify</code>{" "}
-        and{" "}
-        <code style={{ color: "#8681f7" }}>crustdata_watcher_simulate</code> to
-        validate the shape of the data before running paid calls.
-      </p>
-    ),
+    name: "ASK CLAUDE",
+    href: "https://claude.ai/new?q=Tell%20me%20about%20Crustdata%20MCP%20server",
+    logo: "/logos/Claude.svg",
+    invert: false,
   },
   {
-    q: "Can I restrict which tools my team can call?",
-    a: (
-      <p>
-        Yes. The MCP client can scope which tools are exposed, and API-key
-        level permissions limit what any single user can invoke. Admin and
-        audit controls are available on team plans.
-      </p>
-    ),
+    name: "ASK CHATGPT",
+    href: "https://chatgpt.com/?q=Tell%20me%20about%20Crustdata%20MCP%20server",
+    logo: "/logos/ChatGPT.svg",
+    invert: true,
+  },
+  {
+    name: "ASK PERPLEXITY",
+    href: "https://www.perplexity.ai/search?q=Tell%20me%20about%20Crustdata%20MCP%20server",
+    logo: "/logos/perplexity.webp",
+    invert: false,
+  },
+  {
+    name: "ASK GEMINI",
+    href: "https://gemini.google.com/app?q=Tell%20me%20about%20Crustdata%20MCP%20server",
+    logo: "/logos/Google_Gemini_icon_2025.svg.png",
+    invert: false,
   },
 ];
 
@@ -86,8 +81,8 @@ export function FAQ() {
 
   return (
     <section style={{ background: "#000" }}>
-      <div className="mx-auto max-w-[960px] px-6 py-[120px]">
-        <header className="flex flex-col items-center gap-[14px] w-full pt-[6px] mb-[56px]">
+      <div className="mx-auto max-w-[960px] px-6 py-[64px] md:py-[80px]">
+        <header className="flex flex-col items-center gap-[14px] w-full pt-[6px] mb-[80px]">
           <div
             className="font-semibold text-[14px] leading-[17px] uppercase text-center"
             style={{ color: "#8681f7", letterSpacing: "1.54px" }}
@@ -120,7 +115,7 @@ export function FAQ() {
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 py-5 text-left transition-colors"
+                  className="w-full flex items-center justify-between gap-4 py-5 text-left transition-colors cursor-pointer"
                   aria-expanded={isOpen}
                 >
                   <span
@@ -157,6 +152,105 @@ export function FAQ() {
             );
           })}
         </ul>
+
+        <div
+          className="flex flex-col md:flex-row md:items-stretch md:justify-between gap-10 md:gap-16"
+          style={{ marginTop: "120px" }}
+        >
+          <div
+            className="flex flex-col w-full md:w-[400px] shrink-0"
+            style={{ gap: "14px" }}
+          >
+            <div
+              className="font-semibold text-[14px] uppercase"
+              style={{
+                color: "#8681f7",
+                letterSpacing: "1.54px",
+                lineHeight: "17px",
+              }}
+            >
+              STILL WONDERING?
+            </div>
+            <h3
+              className="font-semibold text-[28px] sm:text-[32px] m-0"
+              style={{
+                color: "#fafafa",
+                letterSpacing: "-0.4px",
+                lineHeight: "1.1",
+              }}
+            >
+              Ask your favorite LLM about Crustdata MCP.
+            </h3>
+            <p
+              className="font-normal text-[16px] m-0"
+              style={{ color: "#a1a1aa", lineHeight: "24px" }}
+            >
+              See what each model has to say, then make an informed decision.
+            </p>
+          </div>
+
+          <div
+            className="flex flex-col w-full md:w-auto"
+            style={{ width: "100%", maxWidth: "440px" }}
+          >
+            <div className="grid grid-cols-2 gap-3 w-full flex-1 auto-rows-fr">
+              {llms.map((llm) => (
+                <a
+                  key={llm.name}
+                  href={llm.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-[8px] block h-full"
+                  style={{
+                    padding: "1px",
+                    minHeight: "72px",
+                    background:
+                      "linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%)",
+                  }}
+                >
+                  <span
+                    className="flex items-center justify-between gap-2 rounded-[7px] px-[16px] py-[12px] w-full h-full"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, #101010 0%, #000 100%)",
+                    }}
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <img
+                        src={llm.logo}
+                        alt=""
+                        width={24}
+                        height={24}
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          flexShrink: 0,
+                          objectFit: "contain",
+                          filter: llm.invert ? "invert(1)" : undefined,
+                        }}
+                      />
+                      <span
+                        className="font-sans font-medium text-[13px] uppercase whitespace-nowrap"
+                        style={{
+                          color: "#fafafa",
+                          letterSpacing: "1.2px",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {llm.name}
+                      </span>
+                    </span>
+                    <ArrowUpRight
+                      size={14}
+                      style={{ color: "#71717a", flexShrink: 0 }}
+                      strokeWidth={1.75}
+                    />
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -128,7 +128,7 @@ export function ApiPreview() {
 
   return (
     <section style={{ background: "#000" }}>
-      <div className="mx-auto max-w-[960px] px-6 py-[120px] flex flex-col items-center gap-[56px]">
+      <div className="mx-auto max-w-[960px] px-6 py-[64px] md:py-[80px] flex flex-col items-center gap-[80px]">
         <header className="flex flex-col items-center gap-[14px] w-full pt-[6px]">
           <div
             className="font-semibold text-[14px] uppercase text-center"
@@ -182,14 +182,14 @@ export function ApiPreview() {
             }}
           >
             <div className="flex gap-[6px] pr-[10px]">
-              {[0, 1, 2].map((i) => (
+              {(["#ff5f57", "#ffbd2e", "#28ca42"] as const).map((color) => (
                 <div
-                  key={i}
+                  key={color}
                   style={{
                     width: "10px",
                     height: "10px",
                     borderRadius: "5px",
-                    background: "rgba(255, 255, 255, 0.12)",
+                    background: color,
                   }}
                 />
               ))}
