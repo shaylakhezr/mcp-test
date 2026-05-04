@@ -26,7 +26,7 @@ const blocks: Block[] = [
     gradientBorder: true,
   },
   {
-    title: "Social posts and web research in the same thread",
+    title: "Social posts and web,\nresearch\nin the same thread",
     body: "Pull a prospect's recent posts, run a live web search, or fetch a specific page without leaving the conversation.",
     header: "TOOLS · SIGNALS",
     tools: [

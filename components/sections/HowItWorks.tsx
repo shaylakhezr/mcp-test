@@ -12,12 +12,12 @@ const steps: Step[] = [
   },
   {
     kicker: "AUTH",
-    title: "Authenticate with your API key",
-    body: "OAuth 2.1 handshake. The key never touches our MCP server and is passed through on every request.",
+    title: "Paste your API key",
+    body: "OAuth 2.1, no key storage. Your credential is passed through on every request and never touches our server.",
   },
   {
     kicker: "QUERY",
-    title: "Query in plain English",
+    title: "Type the prompt",
     body: "Claude reads the prompt, picks the right tool, builds the query, and returns the structured response to the thread.",
   },
 ];
