@@ -43,11 +43,20 @@ export function Footer() {
       <div className="mx-auto max-w-[960px] px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-10">
           <div className="col-span-2 md:col-span-1">
-            <div
-              className="font-normal text-[24px] leading-[23.25px] mb-4"
-              style={{ color: "#fafafa" }}
-            >
-              Crustdata
+            <div className="flex items-center gap-2 mb-4">
+              <img
+                src="/logos/Crustdata.svg"
+                alt=""
+                width={36}
+                height={32}
+                style={{ width: "36px", height: "auto" }}
+              />
+              <span
+                className="font-normal text-[24px] leading-[23.25px]"
+                style={{ color: "#fafafa" }}
+              >
+                Crustdata
+              </span>
             </div>
             <p
               className="font-normal text-[14px] leading-[21px] max-w-[280px]"
