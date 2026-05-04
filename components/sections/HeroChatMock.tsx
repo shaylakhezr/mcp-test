@@ -147,15 +147,28 @@ export function HeroChatMock() {
   return (
     <div className="w-full" style={{ overflow: "clip" }}>
       <div
-        className="rounded-[14px] w-full"
+        className="rounded-[14px] w-full relative"
         style={{
-          border: "1px solid transparent",
-          background:
-            "linear-gradient(#070708, #070708) padding-box, linear-gradient(180deg, #858585 0%, #0F0F0F 67%) border-box",
           padding: "16px 24px",
           marginBottom: "-24px",
         }}
       >
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            borderRadius: "14px",
+            padding: "1px",
+            background:
+              "linear-gradient(180deg, #858585 0%, #0F0F0F 67%)",
+            WebkitMask:
+              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+            pointerEvents: "none",
+          }}
+        />
         <div className="flex gap-[6px]">
           <div
             className="rounded-full"

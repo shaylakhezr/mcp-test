@@ -205,14 +205,17 @@ export function Features() {
               lineHeight: "1.05",
             }}
           >
-            Four capabilities, 23 tools, one conversation.
+            Four capabilities, 23 tools,
+            <br />
+            one conversation.
           </h2>
           <p
             className="font-normal text-[18px] text-center max-w-[620px] m-0"
             style={{ color: "#a1a1aa", lineHeight: 1.4 }}
           >
-            Every surface of the Crustdata platform, exposed as an MCP tool
-            Claude can reach for.
+            Every surface of the Crustdata platform, exposed as
+            <br />
+            an MCP tool Claude can reach for.
           </p>
           <a
             href="https://docs.crustdata.com"

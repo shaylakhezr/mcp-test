@@ -9,7 +9,7 @@ const blocks = [
     body: "While ZoomInfo and Apollo refresh weekly or monthly, Crustdata MCP gives Claude live data on every call.",
   },
   {
-    title: "Plain English,\nnot filter UIs",
+    title: "Plain English, not filter UIs",
     body: "Skip the schema hunting. Describe what you need in natural language and Claude builds the query.",
   },
   {
