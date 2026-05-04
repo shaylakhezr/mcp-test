@@ -2,15 +2,16 @@ type Surface = {
   kicker: string;
   title: string;
   body: string;
-};
-
-const mcpSurface: Surface = {
-  kicker: "CONVERSATIONAL",
-  title: "MCP Server",
-  body: "All 23 tools available to Claude, Cursor, and any MCP client as natural-language commands.",
+  highlighted?: boolean;
 };
 
 const surfaces: Surface[] = [
+  {
+    kicker: "CONVERSATIONAL",
+    title: "MCP Server",
+    body: "All 23 tools available to Claude, Cursor, and any MCP client as natural-language commands.",
+    highlighted: true,
+  },
   {
     kicker: "PULL",
     title: "APIs",
@@ -28,89 +29,65 @@ const surfaces: Surface[] = [
   },
 ];
 
-function HeroCard({ surface }: { surface: Surface }) {
+function Card({ surface }: { surface: Surface }) {
+  const isMcp = surface.highlighted;
   return (
     <div
-      className="rounded-[12px] flex flex-col items-center w-full"
+      className="relative rounded-[12px] flex flex-col items-start"
       style={{
-        padding: "25px 23px",
+        padding: "28px",
         gap: "12px",
         border: "1px solid transparent",
-        background:
-          "linear-gradient(180deg, #1e1d30 0%, #000 100%) padding-box, linear-gradient(170deg, #8681f7 0%, #000 100%) border-box",
+        background: isMcp
+          ? "linear-gradient(#000, #000) padding-box, linear-gradient(170deg, #8681f7 0%, #000 100%) border-box"
+          : "linear-gradient(#000, #000) padding-box, linear-gradient(170deg, rgba(255, 255, 255, 0.32) 0%, #000 100%) border-box",
       }}
     >
+      {isMcp && (
+        <span
+          className="absolute font-mono uppercase"
+          style={{
+            top: "16px",
+            right: "16px",
+            fontSize: "10px",
+            letterSpacing: "0.08em",
+            color: "var(--purple-h)",
+            lineHeight: 1,
+          }}
+        >
+          NEW
+        </span>
+      )}
       <div
-        className="font-medium text-[14px] uppercase text-center w-full"
+        className="font-mono uppercase"
         style={{
-          color: "#8681f7",
-          letterSpacing: "1.2px",
-          lineHeight: "15.5px",
+          color: "var(--text-3)",
+          fontSize: "11px",
+          letterSpacing: "0.08em",
+          lineHeight: 1.2,
         }}
       >
         {surface.kicker}
       </div>
-      <div
-        className="font-semibold text-[24px] text-center w-full"
+      <h3
+        className="m-0"
         style={{
-          color: "#fafafa",
+          color: "var(--text-1)",
+          fontSize: "24px",
+          fontWeight: 600,
           letterSpacing: "-0.18px",
-          lineHeight: "23.4px",
+          lineHeight: "28px",
         }}
       >
         {surface.title}
-      </div>
+      </h3>
       <p
-        className="font-normal text-[16px] text-center m-0"
+        className="m-0"
         style={{
-          color: "#a1a1aa",
-          lineHeight: "19.5px",
-          maxWidth: "440px",
+          color: "var(--text-2)",
+          fontSize: "14px",
+          lineHeight: 1.6,
         }}
-      >
-        {surface.body}
-      </p>
-    </div>
-  );
-}
-
-function SurfaceCard({ surface }: { surface: Surface }) {
-  return (
-    <div
-      className="rounded-[12px] flex flex-col items-start"
-      style={{
-        flex: "1 0 0",
-        minWidth: 0,
-        padding: "25px 23px",
-        gap: "12px",
-        border: "1px solid transparent",
-        background:
-          "linear-gradient(#000, #000) padding-box, linear-gradient(170deg, rgba(255, 255, 255, 0.32) 0%, #000 100%) border-box",
-      }}
-    >
-      <div
-        className="font-medium text-[14px] uppercase w-full"
-        style={{
-          color: "#71717a",
-          letterSpacing: "1.2px",
-          lineHeight: "15.5px",
-        }}
-      >
-        {surface.kicker}
-      </div>
-      <div
-        className="font-semibold text-[24px] w-full"
-        style={{
-          color: "#fafafa",
-          letterSpacing: "-0.18px",
-          lineHeight: "23.4px",
-        }}
-      >
-        {surface.title}
-      </div>
-      <p
-        className="font-normal text-[16px] w-full m-0"
-        style={{ color: "#a1a1aa", lineHeight: "19.5px" }}
       >
         {surface.body}
       </p>
@@ -148,16 +125,13 @@ export function Surfaces() {
           </p>
         </header>
 
-        <div className="flex flex-col w-full" style={{ gap: "24px" }}>
-          <HeroCard surface={mcpSurface} />
-          <div
-            className="flex flex-col md:flex-row w-full"
-            style={{ gap: "16px" }}
-          >
-            {surfaces.map((s) => (
-              <SurfaceCard key={s.title} surface={s} />
-            ))}
-          </div>
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 w-full"
+          style={{ gap: "24px" }}
+        >
+          {surfaces.map((s) => (
+            <Card key={s.title} surface={s} />
+          ))}
         </div>
       </div>
     </section>

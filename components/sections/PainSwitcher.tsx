@@ -76,8 +76,8 @@ function Block({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full max-w-[960px] flex flex-col md:flex-row md:items-center md:justify-between gap-12 md:gap-0">
-      <div className="flex flex-col gap-3 w-full md:w-[400px] shrink-0">
+    <div className="w-full max-w-[960px] flex flex-col md:flex-row md:items-center gap-12 md:gap-[80px]">
+      <div className="flex flex-col gap-3 w-full md:flex-1 md:min-w-0">
         <div
           className="font-semibold text-[20px] whitespace-pre-line"
           style={{ color: "#eeeef5", lineHeight: "26px" }}
